@@ -1,34 +1,33 @@
-# Portfolio Site
+# Iqbal Fanosa Wiotama — Portfolio
 
-Struktur:
-```
-├── index.html      # Halaman utama portofolio
-├── roblox.html      # Showcase project Roblox hangout game
-└── images/            # Taruh foto screenshot di sini
-```
+Data verification, quality control, dan annotation review.
 
-## Cara deploy ke GitHub Pages
+Informatics Engineering, Universitas Sriwijaya (GPA 3.63/4.00), 2025. Pertukaran
+pelajar di Universiti Sultan Zainal Abidin, Malaysia. Berpengalaman memverifikasi data
+program berskala besar untuk badan usaha milik negara, kini membangun praktik QA berbasis
+rubrik untuk pekerjaan anotasi data AI.
 
-1. Buat repo baru di GitHub, misal `portfolio`
-2. Upload semua isi folder ini (index.html, roblox.html, folder images/) ke repo tersebut
-   - Bisa lewat web: klik **Add file → Upload files**, drag semua file & folder
-   - Atau lewat git:
-     ```bash
-     git init
-     git add .
-     git commit -m "Initial site"
-     git remote add origin https://github.com/iqbalfw00/portfolio.git
-     git push -u origin main
-     ```
-3. Di repo, buka **Settings → Pages**
-4. Di bagian "Build and deployment", pilih Source: **Deploy from a branch**
-5. Branch: `main`, folder: `/ (root)` → **Save**
-6. Tunggu ~1 menit, situs live di:
-   `https://iqbalfw00.github.io/portfolio/`
-   dan halaman Roblox di:
-   `https://iqbalfw00.github.io/portfolio/roblox.html`
+## Projects
 
-## Update setelah live
+- **Annotation QA Showcase** — Simulasi review anotasi berbasis gambar: rubrik tertulis,
+  16 sampel task dengan justifikasi berbasis bukti, dan laporan pola kesalahan Trainer yang
+  berulang — alur kerja yang sama seperti pekerjaan QC data AI.
 
-Setiap kali edit file (misal tambah foto), upload ulang / push lagi ke repo yang sama —
-GitHub Pages otomatis re-deploy dalam ~1 menit, tidak perlu setting ulang.
+- **AudioGrab** — Aplikasi desktop Windows untuk mengunduh audio langsung dari browser,
+  lewat ekstensi Chrome yang terhubung ke server FastAPI lokal dengan antrean worker pool
+  dan retry/backoff, membungkus yt-dlp. Tanpa re-encode.
+
+- **Roblox Audio Auto-Mastering — v15** — Mesin mastering audio otomatis untuk Roblox,
+  dengan pipeline 4-pass (analisis identitas, pemetaan temporal, pemrosesan adaptif,
+  verifikasi) yang memproses tiap lagu menuju versi terbaik dari dirinya sendiri, lengkap
+  dengan coherence score dan laporan konsistensi batch.
+
+- **Roblox Hangout — Social Music Game** — Game hangout sosial di Roblox yang berpusat
+  pada mendengarkan musik bersama — pemain berkumpul, bersosialisasi, dan menikmati musik
+  bersama dalam satu ruang persisten.
+
+## Kontak
+
+Bangko, Merangin, Indonesia
+iqbalfw00@gmail.com · +62 813-3014-5160
+GitHub: [@iqbalfw00](https://github.com/iqbalfw00) · [LinkedIn](https://www.linkedin.com/in/iqbalfw00)
