@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roblox Hangout — Social Music Game Showcase</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#1c2321;
+    --paper:#e9e4d8;
+    --paper-dim:#ded7c6;
+    --panel:#242b28;
+    --stamp:#b3401f;
+    --stamp-dim:#8a3018;
+    --approve:#3a6b4f;
+    --line: rgba(28,35,33,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background: var(--stamp); color: var(--paper); }
+  a{ color:inherit; }
+
+  .wrap{ max-width:960px; margin:0 auto; padding:0 28px; }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:88px 0 60px;
+    border-bottom:2px solid var(--ink);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color: var(--stamp-dim);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:8px;height:8px;
+    background:var(--stamp);
+    display:inline-block;
+    border-radius:50%;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:clamp(38px, 5.6vw, 62px);
+    line-height:1.03;
+    margin:0 0 20px;
+    letter-spacing:-0.01em;
+    max-width:720px;
+  }
+  h1 em{
+    font-style:italic;
+    font-weight:500;
+    color: var(--stamp);
+  }
+  .sub{
+    font-size:18px;
+    line-height:1.6;
+    max-width:560px;
+    color:#3a423f;
+    margin:0 0 34px;
+  }
+  .hero-links{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:.03em;
+    padding:12px 18px;
+    border:1.5px solid var(--ink);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition: all .15s ease;
+    background:none;
+    cursor:pointer;
+  }
+  .btn.primary{ background:var(--ink); color:var(--paper); }
+  .btn.primary:hover{ background:var(--stamp); border-color:var(--stamp); }
+  .btn:not(.primary):hover{ background:var(--ink); color:var(--paper); }
+
+  .stamp-badge{
+    position:absolute;
+    top:70px; right:28px;
+    width:112px; height:112px;
+    border:3px solid var(--stamp);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    transform:rotate(-9deg);
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:12.5px;
+    color:var(--stamp);
+    letter-spacing:.05em;
+    line-height:1.3;
+    opacity:.9;
+  }
+  @media (max-width:640px){ .stamp-badge{ display:none; } }
+
+  /* SECTIONS */
+  section{ padding:56px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#5b6360;
+    margin:0 0 22px;
+  }
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:28px;
+    margin:0 0 18px;
+  }
+  p{ line-height:1.65; color:#333c39; max-width:640px; }
+
+  /* GALLERY */
+  .gallery{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
+    margin-top:8px;
+  }
+  @media (max-width:760px){
+    .gallery{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width:520px){
+    .gallery{ grid-template-columns: 1fr; }
+  }
+  .frame{
+    position:relative;
+    aspect-ratio: 4/3;
+    background:var(--panel);
+    border:1px solid var(--ink);
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .frame img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .frame .placeholder{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:#7a827d;
+    text-align:center;
+    padding:20px;
+    letter-spacing:.04em;
+  }
+  .frame .placeholder .num{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:26px;
+    color:#4d5450;
+    margin-bottom:8px;
+  }
+  .frame-tag{
+    position:absolute;
+    bottom:0; left:0; right:0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.05em;
+    color:#e4e7e3;
+    background:rgba(28,35,33,0.72);
+    padding:7px 10px;
+    text-transform:uppercase;
+  }
+
+  /* INFO ROWS */
+  .info-log{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    border:1px solid var(--ink);
+    background:var(--panel);
+    color:#d8dcd7;
+    margin-top:8px;
+  }
+  .info-row{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:16px;
+    padding:13px 16px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    align-items:baseline;
+  }
+  .info-row:last-child{ border-bottom:none; }
+  .info-key{ color:#8a938e; text-transform:uppercase; letter-spacing:.05em; font-size:11.5px;}
+  .info-val{ color:#e4e7e3; }
+
+  /* FOOTER */
+  footer{
+    padding:40px 0 60px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:#5b6360;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap hero">
+    <div class="stamp-badge">NOW<br>PLAYING</div>
+    <div class="eyebrow">Roblox · Social / Hangout</div>
+    <h1>A place to <em>hang out</em>,<br>not just play.<br><em>"</em> Ombak Sunset Party<em>"</em></h1>
+    <p class="sub">A social hangout game built on Roblox, centered on shared music listening —
+      players gather, socialize, and experience music together in one persistent space.</p>
+    <div class="hero-links">
+      <a class="btn primary" href="#" target="_blank" rel="noopener">Play on Roblox ↗</a>
+      <a class="btn" href="#gallery">View gallery</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section id="gallery">
+      <p class="label">In-game</p>
+      <h2>Gallery</h2>
+      <p>Screenshots from the experience.</p>
+
+      <div class="gallery">
+        <div class="frame">
+          <img src="images/1.png" alt="Roblox Hangout screenshot 1">
+          <span class="frame-tag">Screenshot 01</span>
+        </div>
+        <div class="frame">
+          <img src="images/2.png" alt="Roblox Hangout screenshot 2">
+          <span class="frame-tag">Screenshot 02</span>
+        </div>
+        <div class="frame">
+          <img src="images/3.png" alt="Roblox Hangout screenshot 3">
+          <span class="frame-tag">Screenshot 03</span>
+        </div>
+        <div class="frame">
+          <img src="images/4.png" alt="Roblox Hangout screenshot 4">
+          <span class="frame-tag">Screenshot 04</span>
+        </div>
+        <div class="frame">
+          <img src="images/5.png" alt="Roblox Hangout screenshot 5">
+          <span class="frame-tag">Screenshot 05</span>
+        </div>
+        <div class="frame">
+          <img src="images/6.png" alt="Roblox Hangout screenshot 6">
+          <span class="frame-tag">Screenshot 06</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <p class="label">About</p>
+      <h2>The experience</h2>
+      <p>Players drop into a shared hangout space built around music — listening together,
+        socializing, and moving through the world at their own pace rather than chasing a
+        win condition. The focus is on presence and atmosphere over competition.</p>
+      <div class="info-log">
+        <div class="info-row"><span class="info-key">Genre</span><span class="info-val">Social / Hangout</span></div>
+        <div class="info-row"><span class="info-key">Platform</span><span class="info-val">Roblox</span></div>
+        <div class="info-row"><span class="info-key">Core loop</span><span class="info-val">Gather, listen, socialize</span></div>
+        <div class="info-row"><span class="info-key">Status</span><span class="info-val">In development</span></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="wrap">
+    <footer>
+      <span>Roblox Hangout — Social Music Game</span>
+      <span>iqbalfw00@gmail.com</span>
+    </footer>
+  </div>
+
+</body>
+</html>

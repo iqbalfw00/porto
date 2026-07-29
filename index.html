@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iqbal Fanosa Wiotama — Data Verification & QC</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#1c2321;
+    --paper:#e9e4d8;
+    --paper-dim:#ded7c6;
+    --panel:#242b28;
+    --stamp:#b3401f;
+    --stamp-dim:#8a3018;
+    --approve:#3a6b4f;
+    --line: rgba(28,35,33,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background: var(--stamp); color: var(--paper); }
+
+  a{ color:inherit; }
+
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:88px 0 64px;
+    border-bottom:2px solid var(--ink);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color: var(--stamp-dim);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:8px;height:8px;
+    background:var(--stamp);
+    display:inline-block;
+    border-radius:50%;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:clamp(40px, 6vw, 68px);
+    line-height:1.02;
+    margin:0 0 20px;
+    letter-spacing:-0.01em;
+  }
+  h1 em{
+    font-style:italic;
+    font-weight:500;
+    color: var(--stamp);
+  }
+  .sub{
+    font-size:18px;
+    line-height:1.6;
+    max-width:560px;
+    color:#3a423f;
+    margin:0 0 34px;
+  }
+  .hero-links{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:.03em;
+    padding:12px 18px;
+    border:1.5px solid var(--ink);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition: all .15s ease;
+  }
+  .btn.primary{ background:var(--ink); color:var(--paper); }
+  .btn.primary:hover{ background:var(--stamp); border-color:var(--stamp); }
+  .btn:not(.primary):hover{ background:var(--ink); color:var(--paper); }
+
+  /* STAMP DECORATION */
+  .stamp-badge{
+    position:absolute;
+    top:70px; right:28px;
+    width:118px; height:118px;
+    border:3px solid var(--stamp);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    transform:rotate(-9deg);
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:13px;
+    color:var(--stamp);
+    letter-spacing:.05em;
+    line-height:1.3;
+    opacity:.9;
+  }
+  @media (max-width:640px){ .stamp-badge{ display:none; } }
+
+  /* SECTIONS */
+  section{ padding:56px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#5b6360;
+    margin:0 0 22px;
+  }
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:30px;
+    margin:0 0 18px;
+  }
+  p{ line-height:1.65; color:#333c39; }
+
+  /* REVIEW LOG STRIP (signature element) */
+  .log{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    border:1px solid var(--ink);
+    background:var(--panel);
+    color:#d8dcd7;
+    margin-top:26px;
+  }
+  .log-row{
+    display:grid;
+    grid-template-columns:56px 1fr 130px;
+    gap:16px;
+    padding:13px 16px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    align-items:center;
+  }
+  .log-row:last-child{ border-bottom:none; }
+  .log-id{ color:#8a938e; }
+  .log-desc{ color:#e4e7e3; }
+  .tag{
+    justify-self:end;
+    padding:3px 9px;
+    font-size:11px;
+    letter-spacing:.05em;
+    border-radius:2px;
+    font-weight:600;
+  }
+  .tag.approve{ background:rgba(58,107,79,0.25); color:#8fd6a8; border:1px solid #3a6b4f;}
+  .tag.correct{ background:rgba(179,64,31,0.2); color:#e7a184; border:1px solid var(--stamp-dim);}
+  .tag.flag{ background:rgba(200,170,60,0.18); color:#e0c463; border:1px solid #a08830;}
+
+  /* PROJECTS */
+  .proj{
+    padding:22px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:8px;
+  }
+  .proj:first-of-type{ border-top:none; }
+  .proj-head{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; }
+  .proj-title{ font-family:'Fraunces', serif; font-weight:600; font-size:20px; }
+  .proj-meta{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:#5b6360; text-transform:uppercase; letter-spacing:.06em;}
+  .proj-link{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-decoration:underline;
+    text-underline-offset:3px;
+    color: var(--stamp-dim);
+  }
+
+  /* FOOTER */
+  footer{
+    padding:40px 0 60px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:#5b6360;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap hero">
+    <div class="stamp-badge">VERIFIED<br>ACCURATE</div>
+    <div class="eyebrow">Open for remote work · Indonesia</div>
+    <h1>I check things<br>so <em>nothing</em> ships wrong.</h1>
+    <p class="sub">Iqbal Fanosa Wiotama — data verification, quality control, and annotation
+      review. B.Eng. Informatics Engineering, Universitas Sriwijaya. Background verifying
+      large-scale program data for a state-owned enterprise, now building a rubric-based QA
+      practice for AI data annotation work.</p>
+    <div class="hero-links">
+      <a class="btn primary" href="mailto:iqbalfw00@gmail.com">Email me</a>
+      <a class="btn" href="https://github.com/iqbalfw00" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/iqbalfw00" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section id="what-i-do">
+      <p class="label">What I review</p>
+      <h2>Consistency is the job.</h2>
+      <p>Every review below follows the same written rubric — the same four categories, the
+        same decision order, every time. That consistency is what a QC review is actually
+        for: not spotting one clever error, but applying one standard across hundreds of
+        cases without drifting.</p>
+      <div class="log">
+        <div class="log-row"><span class="log-id">T-001</span><span class="log-desc">File name matches sidebar selection exactly</span><span class="tag approve">APPROVE</span></div>
+        <div class="log-row"><span class="log-id">T-002</span><span class="log-desc">Size unit misread — 245 KB submitted as MB</span><span class="tag correct">CORRECT</span></div>
+        <div class="log-row"><span class="log-id">T-004</span><span class="log-desc">Two unlabeled totals — period not specified</span><span class="tag flag">FLAG</span></div>
+        <div class="log-row"><span class="log-id">T-006</span><span class="log-desc">Render failed — no legible content to verify</span><span class="tag flag">FLAG</span></div>
+        <div class="log-row"><span class="log-id">T-012</span><span class="log-desc">Month misread — header clearly states "July"</span><span class="tag correct">CORRECT</span></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <p class="label">Selected work</p>
+      <h2>Projects</h2>
+
+      <div class="proj">
+        <div class="proj-head">
+          <span class="proj-title">Annotation QA Showcase</span>
+          <span class="proj-meta">Rubric · Review Log · Pattern Report</span>
+        </div>
+        <p>A self-built simulation of image-based annotation review: a written rubric, 16
+          reviewed sample tasks with evidence-based justifications, and a pattern report
+          identifying recurring Trainer errors — the exact workflow used in AI data QC roles.</p>
+        <a class="proj-link" href="https://github.com/iqbalfw00/annotation-qa-showcase" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <span class="proj-title">AudioGrab</span>
+          <span class="proj-meta">Python · FastAPI · Chrome Extension · yt-dlp</span>
+        </div>
+        <p>Windows desktop app for downloading audio straight from the browser — a Chrome
+          extension talks to a local FastAPI server, which queues jobs through a worker pool
+          with retry/backoff and wraps yt-dlp. No re-encoding: files are pulled as-is from the
+          original stream (e.g. Opus 160kbps, AAC 256kbps). Same QC instinct applied to
+          software: one consistent handling rule enforced across every source and format.</p>
+        <a class="proj-link" href="https://github.com/iqbalfw00" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <span class="proj-title">Roblox Audio Auto-Mastering — v15</span>
+          <span class="proj-meta">Python · NumPy/SciPy · FFmpeg · Signal Processing</span>
+        </div>
+        <p>Automatic audio mastering engine for Roblox, where games don't apply their own
+          loudness normalization — so LUFS targeting hits the player experience directly. A
+          4-pass pipeline (identity analysis, temporal mapping, adaptive processing,
+          verification) masters each track toward the best version of itself rather than a
+          generic loudness standard, with a coherence score and batch consistency report
+          verifying the output. The same rubric-driven, evidence-based verification
+          discipline as the QC work, applied to DSP instead of data.</p>
+        <a class="proj-link" href="https://github.com/iqbalfw00" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+
+      <div class="proj">
+        <div class="proj-head">
+          <span class="proj-title">Roblox Hangout — Social Music Game</span>
+          <span class="proj-meta">Roblox · Lua · Social/Hangout Experience</span>
+        </div>
+        <p>A social hangout game built on Roblox centered on shared music listening — players
+          gather, socialize, and experience music together in one persistent space.</p>
+        <a class="proj-link" href="roblox.html" target="_blank" rel="noopener">View project →</a>
+      </div>
+    </section>
+
+    <section id="background">
+      <p class="label">Background</p>
+      <h2>A quick summary</h2>
+      <p><strong>Education —</strong> B.Eng. Informatics Engineering, Universitas Sriwijaya
+        (GPA 3.63/4.00), 2025. Exchange semester at Universiti Sultan Zainal Abidin, Malaysia.</p>
+      <p><strong>Languages —</strong> Indonesian (native), English (professional — academic &amp;
+        technical reading/writing).</p>
+      <p><strong>Available for —</strong> remote, task-based data verification, quality control,
+        and annotation review work, 40+ hours/week.</p>
+    </section>
+  </div>
+
+  <div class="wrap">
+    <footer>
+      <span>Bangko, Merangin, Indonesia</span>
+      <span>iqbalfw00@gmail.com · +62 813-3014-5160</span>
+    </footer>
+  </div>
+
+</body>
+</html>
